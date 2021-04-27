@@ -1,0 +1,45 @@
+---
+service: id-tech-test
+
+provider:
+  name: aws
+  stage: ${opt:stage, self:custom.defaultStage}
+  runtime: python3.7
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - kms:*
+      Resource: ${env:AWS_KMS_KEYID}
+  tags:
+    environment: "p"
+    teamDL: "infrastructure.delivery@ft.com"
+    systemCode: "id-rnd"
+
+plugins:
+  - serverless-crypt
+  - serverless-python-requirements
+
+custom:
+  cryptKeyId: ${env:AWS_KMS_KEYID}
+  pythonRequirements:
+    dockerizePip: non-linux
+  defaultStage: prod
+
+functions:
+  github_webhook:
+    handler: github_webhook.handler
+    events:
+      - http: POST webhook
+package:
+  exclude:
+    - "**"
+  include:
+    - github_webhook.py
+    - lib/**
+
+resources:
+  Resources:
+    IamRoleLambdaExecution:
+      Properties:
+        # yamllint disable-line rule:line-length
+        PermissionsBoundary: ${cf:idbot-deploymentuser.PermissionsBoundaryArn}

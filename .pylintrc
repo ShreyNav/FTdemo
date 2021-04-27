@@ -1,0 +1,10 @@
+[FORMAT]
+indent-string='  '
+indent-after-paren=2
+max-line-length=120
+
+[MESSAGES CONTROL]
+disable=W0621,R0201
+
+[TYPECHECK]
+ignored-classes=responses
