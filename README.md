@@ -5,6 +5,15 @@ Serverless function to help with managing admin processes for the Infrastructure
 
 ## Prerequisites
 
+To run the app and tests locally:
+
+```bash
+python3 -m venv env
+source env/bin/activate
+pip install --upgrade pip setuptools wheel
+pip install -r requirements.txt
+```
+
 You'll need to set up a Slack app to enable you to access the Slack API.
 
 Install serverless and jq to deploy the lambdas via serverless:
