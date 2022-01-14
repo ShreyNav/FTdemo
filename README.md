@@ -3,7 +3,21 @@
 Serverless function to help with managing admin processes for the Infrastructure Delivery team.
 `github_webhook` listens for events from Github when someone creates or edits a Wiki page, and posts a message in Slack with the details.
 
-## Prerequisites
+## Tech test prerequisites
+
+As part of the tech test, we don't expect you to get this app fully deployable via Serverless, or connected to GitHub or Slack.
+
+However, you will want to install the requirements in order to run tests locally:
+
+```bash
+python3 -m venv env     # or your preferred way of setting up a Python virtual environment
+source env/bin/activate
+pip install --upgrade pip setuptools wheel
+pip install -r requirements.txt
+make test
+```
+
+## Serverless deployment prerequisites
 
 You'll need to set up a Slack app to enable you to access the Slack API.
 
