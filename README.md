@@ -1,80 +1,63 @@
-# id-tech-test
+# Engineering Enablement - Python technical interview
 
-Serverless function to help with managing admin processes for the Infrastructure Delivery team.
-`github_webhook` listens for events from Github when someone creates or edits a Wiki page, and posts a message in Slack with the details.
+This repository contains the codebase and interview guidelines for the Engineering Enablement Python technical interview, which should take around an hour and a half.
 
-## Tech test prerequisites
+It is an example of a Serverless app used at the FT - the app's original readme is located in [APP_README.md](./APP_README.md).
 
-As part of the tech test, we don't expect you to get this app fully deployable via Serverless, or connected to GitHub or Slack.
+We will be assessing your ability to:
 
-However, you will want to install the requirements in order to run tests locally:
+- read and explain an unfamiliar codebase
+- work out an approach to implement a small enhancement
+- discuss how you would build and operate production systems
+- discuss your approach to building secure and scalable systems
 
-```bash
-python3 -m venv env     # or your preferred way of setting up a Python virtual environment
-source env/bin/activate
-pip install --upgrade pip setuptools wheel
-pip install -r requirements.txt
-make test
-```
+As part of the technical interview, we don't expect you to get this app deployed via Serverless, or connected to GitHub or Slack.
 
-## Serverless deployment prerequisites
+However, you should be able to run the tests locally and validate any changes that way.
 
-You'll need to set up a Slack app to enable you to access the Slack API.
+We will ask you to screenshare and talk through your approach during the interview, as though we were pairing together on a task - we are more interested in how you work, not how much code you write.
 
-Install serverless and jq to deploy the lambdas via serverless:
+Treat this like a pair programming session, we are here to help - ask us questions and let us know what you are doing and why. You can use Google or any other resources you would like.
 
-```sh
-npm install serverless --save
-npm install serverless-crypt
-brew install jq
-```
+We're not expecting you to fully implement the new feature, but do as much as you can within the time that we have.
 
-## Secrets management
+There will be time at the end for any general questions about the team or role you are applying for.
 
-Secrets are managed using the [serverless-crypt](https://github.com/marcy-terui/serverless-crypt) plugin. This plugin relies on KMS, so you should set an environment variable `AWS_KMS_KEYID` to point to the ARN of the key that you'd like to use for this.
+## Getting started
 
-Two secrets are required:
+We will share this repository with you ahead of the interview.
 
-- `GITHUB_WEBHOOK_SECRET`: a shared secret to allow us to validate Wiki webhook events from Github.
-- `SLACK_API_TOKEN`: a Slack OAuth access token for accessing general Slack API functions. It needs `chat:write:bot` permissions in order to send messages.
+Either before the interview or at the beginning of the interview, we recommend that you:
 
- If you need to update a secret, here's how to do it:
+- check you have Python 3.x installed
+- clone this repository
+- set up your Python virtual environment
+- install the requirements
+  - `pip install --upgrade pip setuptools wheel && pip install -r requirements.txt`
+- [check that the tests run successfully](./APP_README.md#manually-running-tests)
+- read the original [APP_README.md](./APP_README.md) and codebase
 
-```sh
-$ serverless encrypt -n SLACK_API_TOKEN -t MYTOKEN --save
-Serverless: Name of the secret: SLACK_API_TOKEN
-Serverless: Encrypt the text: MYTOKEN
-Serverless: Cipher text: AQICAHic00ID678OlOQtYRLGpzuTi3LFsNTMS0joyQ+3nNiHIAEklBkRpM2A+cUbmYPIX2hgAAAArzCBrAYJKoZIhvcNAQcGoIGeMIGbAgEAMIGVBgkqhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEED
-CdH3PvUKM/Y75zFZgIBEIBoxCF5fu4r2ZqoT0Ga6+7fCm/WiC3e4B0W9Nmx8rurX8XzDUvzaIW3ZD3cv+Sn458+gAut5RMhiKC23Ioynz+YSoaRw9H0UY+qGaIXxbSBXcyHaUvaZ+eolCWaESsJ/8KOlOhAW9VA2do=
-Serverless: Successfully saved the secret that named "SLACK_API_TOKEN"
-```
+## Exercise 1 - working with code
 
-You can (and should!) commit the resulting `.serverless-secret.json` to Git.
-## Adding the webhook
+This section will take around 40 minutes.
 
-You can add a webhook to a Github repository in Settings / Webhooks. This function only understands Wiki events (Github calls these `gollum` events).
+We will start by asking you to describe what you think the code and application does.
 
-# Deployment
+Share your thoughts on why the code is organised the way it is, or any other technical choices that may have gone into it.
 
-To deploy the serverless functions:
+We will then ask you to work out an approach for implementing a small change to the app, which we will share with you during the interview.
 
-```sh
-make deploy
-```
-## Manually Running tests
+## Exercise 2 - tech questions
 
-To run the tests locally:
+This non-coding section will take around 20 minutes.
 
-```sh
-make test
-```
+We will ask you a few questions around:
 
-Or for coverage:
+- building and operating production systems
+- designing available, secure and scalable systems
 
-```sh
-make test-coverage && open htmlcov/index.html
-```
+## End of the interview
 
-## Contact
+There will be time at the end of the interview for you to ask any questions about the Financial Times, the team or the role that you're applying for.
 
-Please contact [Infrastructure Delivery](mailto:infrastructure.delivery@ft.com) with any questions or PRs.
+Good luck! :slightly_smiling_face:
