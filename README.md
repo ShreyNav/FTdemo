@@ -45,7 +45,9 @@ We will start by asking you to describe what you think the code and application 
 
 Share your thoughts on why the code is organised the way it is, or any other technical choices that may have gone into it.
 
-We will then ask you to work out an approach for implementing a small change to the app, which we will share with you during the interview.
+We will then ask you to work out an approach for implementing a small change to the app.
+
+During the interview, we will share information on the change [in this Google Doc](https://docs.google.com/document/d/1rXFLacMFDsJmUdf5Pvm6FE_r4wjSWTeXNLZund-d6pI/edit).
 
 ## Exercise 2 - tech questions
 
